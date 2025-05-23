@@ -1,5 +1,5 @@
 import * as React from "react"
-import { MessagesSquare } from "lucide-react"
+import { MessagesSquare, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import {
   Sidebar,
@@ -47,11 +47,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {/* Decorative Rail */}
       <SidebarRail className="hidden md:block bg-yellow-100 border-l border-yellow-300" />
 
-      {/* Footer with GitHub */}
-      <SidebarFooter className="p-4 border-t border-yellow-300">
-        <SidebarMenu>
+      {/* Footer with Skillstree Button */}
+      <SidebarFooter className="p-4 border-t border-yellow-300 text-xs text-yellow-800">
+        <SidebarMenu className="space-y-3">
           <SidebarMenuItem>
-            
+            <span className="text-sm font-semibold text-yellow-800">
+              Managed by <span className="text-yellow-900 font-bold">SkillTree @ 2025</span>
+            </span>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <Link href="https://skillstree.in" target="_blank" className="w-full">
+              <button className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium bg-yellow-300 text-yellow-900 rounded-lg hover:bg-yellow-400 transition-all">
+                <ExternalLink className="w-4 h-4" />
+                Visit Skillstree Website
+              </button>
+            </Link>
+          </SidebarMenuItem>
+          <SidebarMenuItem className="text-[10.5px] text-yellow-900 pt-1">
+            Copyright © 2025 SkillTree.All rights reserved.
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
