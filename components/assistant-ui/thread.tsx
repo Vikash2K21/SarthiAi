@@ -26,12 +26,16 @@ import { ToolFallback } from "./tool-fallback";
 export const Thread: FC = () => {
   return (
     <ThreadPrimitive.Root
-      className="bg-background box-border flex h-full flex-col overflow-hidden"
+      className="relative bg-background box-border flex h-full flex-col overflow-hidden"
       style={{
         ["--thread-max-width" as string]: "42rem",
       }}
     >
-      <ThreadPrimitive.Viewport className="flex h-full flex-col items-center overflow-y-scroll scroll-smooth bg-inherit px-4 pt-8">
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center text-[10vw] font-bold text-muted-foreground opacity-10 select-none">
+        SARTHI AI
+      </div>
+
+      <ThreadPrimitive.Viewport className="relative z-10 flex h-full flex-col items-center overflow-y-scroll scroll-smooth bg-inherit px-4 pt-8">
         <ThreadWelcome />
 
         <ThreadPrimitive.Messages
@@ -72,10 +76,25 @@ const ThreadScrollToBottom: FC = () => {
 const ThreadWelcome: FC = () => {
   return (
     <ThreadPrimitive.Empty>
-      <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
-        <div className="flex w-full flex-grow flex-col items-center justify-center">
-          <p className="mt-4 font-medium">How can I help you today?</p>
+      <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col items-center justify-center relative">
+        {/* Large faded Sarthi AI text in background */}
+        <h1 className="text-[5rem] md:text-[6rem] font-bold text-blue-100 absolute top-10 select-none pointer-events-none z-0">
+          Sarthi AI
+        </h1>
+
+        {/* Main welcome message */}
+        <div className="z-10 text-center px-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-blue-900">
+            Welcome to Sarthi AI!
+          </h2>
+          <p className="mt-2 text-md md:text-lg text-muted-foreground">
+            Ask your doubts from any topic, chapter, or subject – I'm here to assist you.
+          </p>
+          <p className="text-sm text-blue-700 mt-1 italic">
+            Your personal study companion.
+          </p>
         </div>
+
         <ThreadWelcomeSuggestions />
       </div>
     </ThreadPrimitive.Empty>
@@ -84,25 +103,25 @@ const ThreadWelcome: FC = () => {
 
 const ThreadWelcomeSuggestions: FC = () => {
   return (
-    <div className="mt-3 flex w-full items-stretch justify-center gap-4">
+    <div className="mt-3 flex w-full flex-wrap items-stretch justify-center gap-4">
       <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What is the weather in Tokyo?"
+        className="hover:bg-muted/80 grow basis-0 flex flex-col items-start justify-start rounded-xl border p-4 transition-colors ease-in shadow-sm max-w-sm"
+        prompt="What is a binary search tree and how does it work?"
         method="replace"
         autoSend
       >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          What is the weather in Tokyo?
+        <span className="text-left text-sm font-semibold">
+          What is a binary search tree and how does it work?
         </span>
       </ThreadPrimitive.Suggestion>
       <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What is assistant-ui?"
+        className="hover:bg-muted/80 grow basis-0 flex flex-col items-start justify-start rounded-xl border p-4 transition-colors ease-in shadow-sm max-w-sm"
+        prompt="Explain the concept of Normalization in DBMS."
         method="replace"
         autoSend
       >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          What is assistant-ui?
+        <span className="text-left text-sm font-semibold">
+          Explain the concept of Normalization in DBMS.
         </span>
       </ThreadPrimitive.Suggestion>
     </div>

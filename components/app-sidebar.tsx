@@ -15,43 +15,42 @@ import { ThreadList } from "./assistant-ui/thread-list"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
-      <SidebarHeader>
+    <Sidebar
+      {...props}
+      className="bg-gradient-to-b from-yellow-50 via-yellow-100 to-yellow-200 text-yellow-900 font-sarabun shadow-md border border-yellow-300"
+      style={{ fontFamily: "'Sarabun', sans-serif" }}
+    >
+      {/* Header with Brand */}
+      <SidebarHeader className="p-4 border-b border-yellow-300">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-                <Link href="https://assistant-ui.com" target="_blank">
-                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                    <MessagesSquare className="size-4" />
-                  </div>
-                  <div className="flex flex-col gap-0.5 leading-none">
-                    <span className="font-semibold">assistant-ui</span>
-                  </div>
-                </Link>
-              </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <ThreadList />
-      </SidebarContent>
-      
-      <SidebarRail />
-      <SidebarFooter>
-        <SidebarMenu>
-         
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href="https://github.com/assistant-ui/assistant-ui" target="_blank">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Github className="size-4" />
+              <Link href="https://assistant-ui.com" target="_blank" className="flex items-center gap-3">
+                <div className="flex items-center justify-center rounded-xl bg-yellow-300 text-yellow-900 p-2 shadow-sm transition-transform duration-300 ease-in-out">
+                  <MessagesSquare className="w-5 h-5" />
                 </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">GitHub</span>
-                  <span className="">View Source</span>
+                <div className="flex flex-col leading-tight">
+                  <span className="font-semibold text-lg">Sarthi-Ai</span>
+                  <span className="text-sm text-yellow-700">Your AI Assistant</span>
                 </div>
               </Link>
             </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+
+      {/* Content with Threads */}
+      <SidebarContent className="p-2 overflow-auto scrollbar-thin scrollbar-thumb-yellow-300 hover:scrollbar-thumb-yellow-400 transition-colors duration-300">
+        <ThreadList />
+      </SidebarContent>
+
+      {/* Decorative Rail */}
+      <SidebarRail className="hidden md:block bg-yellow-100 border-l border-yellow-300" />
+
+      {/* Footer with GitHub */}
+      <SidebarFooter className="p-4 border-t border-yellow-300">
+        <SidebarMenu>
+          <SidebarMenuItem>
             
           </SidebarMenuItem>
         </SidebarMenu>
