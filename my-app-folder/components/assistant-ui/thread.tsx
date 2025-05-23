@@ -88,7 +88,7 @@ const ThreadWelcome: FC = () => {
             Welcome to Sarthi AI!
           </h2>
           <p className="mt-2 text-md md:text-lg text-muted-foreground">
-            Ask your doubts from any topic, chapter, or subject – I'm here to assist you.
+           Ask your doubts from any topic, chapter, or subject.I&apos;m here to assist you.
           </p>
           <p className="text-sm text-blue-700 mt-1 italic">
             Your personal study companion.
