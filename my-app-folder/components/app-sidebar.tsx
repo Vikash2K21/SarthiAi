@@ -1,5 +1,8 @@
+"use client"
+
 import * as React from "react"
-import { MessagesSquare, ExternalLink } from "lucide-react"
+import { useState } from "react"
+import { MessagesSquare, ExternalLink, Loader2 } from "lucide-react"
 import Link from "next/link"
 import {
   Sidebar,
@@ -14,6 +17,16 @@ import {
 import { ThreadList } from "./assistant-ui/thread-list"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [loading, setLoading] = useState(false)
+
+  const handleVisitSkilltree = () => {
+    setLoading(true)
+    setTimeout(() => {
+      window.open("https://lms-full-stack-lemon-seven.vercel.app/", "_blank")
+      setLoading(false)
+    }, 1000) // Spinner for 1 second
+  }
+
   return (
     <Sidebar
       {...props}
@@ -55,16 +68,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               Managed by <span className="text-yellow-900 font-bold">SkillTree @ 2025</span>
             </span>
           </SidebarMenuItem>
+
           <SidebarMenuItem>
-            <Link href="https://skillstree.in" target="_blank" className="w-full">
-              <button className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium bg-yellow-300 text-yellow-900 rounded-lg hover:bg-yellow-400 transition-all">
-                <ExternalLink className="w-4 h-4" />
-                Visit Skillstree Website
-              </button>
-            </Link>
+            <button
+              onClick={handleVisitSkilltree}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium bg-yellow-300 text-yellow-900 rounded-lg hover:bg-yellow-400 transition-all"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="animate-spin w-4 h-4" />
+                  Visiting Skilltree...
+                </>
+              ) : (
+                <>
+                  <ExternalLink className="w-4 h-4" />
+                  Visit Skillstree Website
+                </>
+              )}
+            </button>
           </SidebarMenuItem>
+
           <SidebarMenuItem className="text-[10.5px] text-yellow-900 pt-1">
-            Copyright © 2025 SkillTree.All rights reserved.
+            Copyright © 2025 SkillTree. All rights reserved.
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
